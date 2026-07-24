@@ -30,3 +30,45 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
+/* ==========================================================================
+   PREMIUM MINIMALIST CUSTOM SCROLLBAR FOR MALIK KASHAN PORTFOLIO
+   ========================================================================== */
+
+/* 1. Scrollbar ke poore structure ki width set karna */
+::-webkit-scrollbar {
+  width: 8px; /* Default se kafi patla aur sleek look */
+  height: 8px; /* Horizontal scrollbar ke liye */
+}
+
+/* 2. Scrollbar ka background track (Right side border lane ke liye) */
+::-webkit-scrollbar-track {
+  background: #0a0a0c; /* Aapke section ka main background color */
+  border-left: 1px solid rgba(255, 255, 255, 0.02); /* Ek subtle separated layer line */
+}
+
+/* 3. Rolling Thumb (Jo handle user drag karta hai) */
+::-webkit-scrollbar-thumb {
+  background: rgba(
+    212,
+    175,
+    55,
+    0.15
+  ); /* Luxury Premium Gold tone with transparency */
+  border-radius: 20px; /* Fully rounded elegant pill look */
+  border: 2px solid #0a0a0c; /* Track ke andar floating overlay effect dene ke liye spacing padding padding */
+  transition: all 0.3s ease;
+}
+
+/* 4. Active Hover state jab user scrollbar par mouse le jaye */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.6); /* Gold color sharp ho jayega */
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); /* Subtle ambient gold glare glow */
+}
+
+/* Firefox browsers ke liye support wrapper metrics */
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: rgba(212, 175, 55, 0.2) #0a0a0c;
+    scrollbar-width: thin;
+  }
+}
