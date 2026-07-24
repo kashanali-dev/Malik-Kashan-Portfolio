@@ -1,4 +1,3 @@
-// src/app/Components/Footer.jsx
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -32,7 +31,7 @@ export default function Footer() {
             <div className="relative h-11 w-11 rounded-full border border-white/8 bg-[#111114] flex items-center justify-center p-0.5 shadow-[0_4px_20px_rgba(0,0,0,0.4)] overflow-hidden group">
               <img
                 src="/logo.png" // Public folder me rakhi logo file ka link yahan match karein (.png/.jpg/.svg)
-                alt="Malik Kashan Logo"
+                alt="Malik Kashan Official Portfolio Branding Logo"
                 className="h-full w-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -58,13 +57,26 @@ export default function Footer() {
           >
             <div className="flex items-center flex-wrap justify-center gap-x-6 gap-y-2">
               {[
-                { label: "Privacy Policy", href: "#" },
-                { label: "Terms of Service", href: "#" },
-                { label: "Back To Top ↑", href: "#" },
+                {
+                  label: "Privacy Policy",
+                  href: "#",
+                  aria: "View Privacy Policy",
+                },
+                {
+                  label: "Terms of Service",
+                  href: "#",
+                  aria: "View Terms of Service",
+                },
+                {
+                  label: "Back To Top ↑",
+                  href: "#",
+                  aria: "Scroll back to the top of the page",
+                },
               ].map((link, idx) => (
                 <motion.a
                   key={idx}
                   href={link.href}
+                  aria-label={link.aria}
                   whileHover={{ y: -1 }}
                   onClick={(e) => {
                     if (link.label.includes("Top")) {

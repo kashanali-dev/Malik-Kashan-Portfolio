@@ -1,4 +1,3 @@
-// src/app/Components/Contact.jsx
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -121,9 +120,13 @@ export default function Contact() {
                 <div className="space-y-3.5">
                   <a
                     href="mailto:kashanalikot@gmail.com"
+                    aria-label="Send an email to Kashan Ali"
                     className="group flex items-center gap-3.5 p-3 rounded-xl bg-white/1 border border-white/2 hover:border-[#d4af37]/20 transition-all duration-300"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] text-xs font-mono font-bold group-hover:bg-[#d4af37]/20 transition-colors">
+                    <div
+                      className="w-8 h-8 rounded-lg bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] text-xs font-mono font-bold group-hover:bg-[#d4af37]/20 transition-colors"
+                      aria-hidden="true"
+                    >
                       @
                     </div>
                     <div>
@@ -137,7 +140,10 @@ export default function Contact() {
                   </a>
 
                   <div className="group flex items-center gap-3.5 p-3 rounded-xl bg-white/1 border border-white/2 transition-all duration-300">
-                    <div className="w-8 h-8 rounded-lg bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] text-xs font-mono font-bold">
+                    <div
+                      className="w-8 h-8 rounded-lg bg-[#d4af37]/10 flex items-center justify-center text-[#d4af37] text-xs font-mono font-bold"
+                      aria-hidden="true"
+                    >
                       📍
                     </div>
                     <div>
@@ -158,6 +164,7 @@ export default function Contact() {
                   <a
                     key={sIdx}
                     href="#"
+                    aria-label={`Visit my ${social} profile`}
                     className="text-[10px] font-mono text-white/40 hover:text-[#d4af37] transition-colors uppercase tracking-wider bg-white/1 px-3 py-1.5 rounded-lg border border-white/3 hover:border-[#d4af37]/20"
                   >
                     {social}
@@ -176,10 +183,14 @@ export default function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Name Frame */}
                 <div className="flex flex-col gap-1">
-                  <label className="text-[9px] uppercase tracking-widest font-mono text-white/40">
+                  <label
+                    htmlFor="contact-name"
+                    className="text-[9px] uppercase tracking-widest font-mono text-white/40"
+                  >
                     Your Name
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
                     disabled={status === "sending"}
@@ -194,10 +205,14 @@ export default function Contact() {
 
                 {/* Email Frame */}
                 <div className="flex flex-col gap-1">
-                  <label className="text-[9px] uppercase tracking-widest font-mono text-white/40">
+                  <label
+                    htmlFor="contact-email"
+                    className="text-[9px] uppercase tracking-widest font-mono text-white/40"
+                  >
                     Email Address
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     disabled={status === "sending"}
@@ -213,10 +228,14 @@ export default function Contact() {
 
               {/* Company Field (Balanced Full Width Segment) */}
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] uppercase tracking-widest font-mono text-white/40">
+                <label
+                  htmlFor="contact-company"
+                  className="text-[9px] uppercase tracking-widest font-mono text-white/40"
+                >
                   Company Name
                 </label>
                 <input
+                  id="contact-company"
                   type="text"
                   disabled={status === "sending"}
                   value={formData.company}
@@ -230,10 +249,14 @@ export default function Contact() {
 
               {/* Message Frame */}
               <div className="flex flex-col gap-1">
-                <label className="text-[9px] uppercase tracking-widest font-mono text-white/40">
+                <label
+                  htmlFor="contact-message"
+                  className="text-[9px] uppercase tracking-widest font-mono text-white/40"
+                >
                   Your Message
                 </label>
                 <textarea
+                  id="contact-message"
                   rows="3"
                   required
                   disabled={status === "sending"}

@@ -1,4 +1,3 @@
-// src/app/Components/Projects.jsx
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -128,7 +127,7 @@ export default function Projects() {
               <div className="relative w-full aspect-16/10 overflow-hidden bg-[#151518] border-b border-white/3">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - ${project.category}`}
                   loading="lazy"
                   className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500 filter brightness-[0.8] group-hover:brightness-[0.95] contrast-[1.02]"
                 />
@@ -143,7 +142,10 @@ export default function Projects() {
                 </span>
 
                 {/* Micro Index Number Tag */}
-                <span className="absolute top-3.5 right-3.5 font-mono text-[9px] sm:text-[10px] tracking-wider text-white/20 group-hover:text-[#d4af37]/50 transition-colors">
+                <span
+                  className="absolute top-3.5 right-3.5 font-mono text-[9px] sm:text-[10px] tracking-wider text-white/20 group-hover:text-[#d4af37]/50 transition-colors"
+                  aria-hidden="true"
+                >
                   //0{idx + 1}
                 </span>
               </div>
@@ -185,6 +187,7 @@ export default function Projects() {
                       href={project.liveLink}
                       target={project.liveLink !== "#" ? "_blank" : "_self"}
                       rel="noopener noreferrer"
+                      aria-label={`View Live Demo of ${project.title}`}
                       className="text-[10px] sm:text-[11px] font-mono font-medium text-[#d4af37] hover:text-[#f3e5ab] transition-colors flex items-center gap-1 uppercase tracking-widest relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-px after:bg-[#d4af37] after:transition-all after:duration-300"
                     >
                       Live Demo ↗
@@ -193,6 +196,7 @@ export default function Projects() {
                       href={project.gitLink}
                       target={project.gitLink !== "#" ? "_blank" : "_self"}
                       rel="noopener noreferrer"
+                      aria-label={`View Source Code of ${project.title} on GitHub`}
                       className="text-[10px] sm:text-[11px] font-mono text-white/40 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-widest"
                     >
                       Source Code

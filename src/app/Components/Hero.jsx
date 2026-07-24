@@ -1,4 +1,3 @@
-// src/app/Components/Hero.jsx
 "use client";
 import { useState, useEffect } from "react";
 
@@ -77,6 +76,7 @@ export default function Hero() {
             Hello, It's Me
           </h4>
 
+          {/* Original styling preserved completely */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-brandSilver uppercase mb-3">
             Malik Kashan
           </h1>
@@ -112,6 +112,7 @@ export default function Hero() {
                 <a
                   key={idx}
                   href="#"
+                  aria-label={`Social Profile ${item.toUpperCase()}`}
                   className="w-9 h-9 rounded-full border border-white/8 bg-white/2 flex items-center justify-center text-xs text-brandSilver/70 hover:border-brandGold hover:text-brandGold transition-all duration-300 uppercase font-mono"
                 >
                   {item}

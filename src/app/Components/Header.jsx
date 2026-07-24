@@ -1,4 +1,3 @@
-// src/app/Components/Header.jsx
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -26,19 +25,24 @@ export default function Header() {
       {/* Subtle interior lighting glare effect */}
       <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/2 to-transparent rounded-2xl pointer-events-none" />
 
-      <nav className="h-20 px-5 sm:px-6 lg:px-8 flex items-center justify-between relative z-10">
+      <nav
+        className="h-20 px-5 sm:px-6 lg:px-8 flex items-center justify-between relative z-10"
+        aria-label="Main Navigation"
+      >
         {/* Logo and Typography Alignment */}
         <a
-          href="/"
+          href="#home"
           className="flex items-center gap-3 group shrink-0 transition-transform duration-300 hover:scale-[1.01]"
+          aria-label="Malik Kashan Portfolio Homepage"
         >
           <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-white/3 border border-white/8 p-1 shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
             <Image
               src="/logo.png"
-              alt="MK Logo"
+              alt="Malik Kashan - Professional Portfolio Logo"
               width={36}
               height={36}
               className="object-contain"
+              priority
             />
           </div>
           <div className="flex flex-col">
@@ -83,7 +87,11 @@ export default function Header() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl border border-white/8 bg-white/2 hover:border-brandGold/40 transition-all duration-300"
-            aria-label="Toggle Menu"
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation-menu"
           >
             <div className="space-y-1.5 w-5">
               <span
@@ -102,6 +110,7 @@ export default function Header() {
 
       {/* Dynamic Slide Drawer Panel - Handles both Mobile & Tablet viewports */}
       <div
+        id="mobile-navigation-menu"
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-white/4 bg-brandBg/98 rounded-b-2xl ${
           isOpen && mounted
             ? "max-h-95 opacity-100"

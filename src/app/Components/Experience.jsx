@@ -1,4 +1,3 @@
-// src/app/Components/Experience.jsx
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";

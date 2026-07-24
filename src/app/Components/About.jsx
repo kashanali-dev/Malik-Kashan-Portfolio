@@ -1,4 +1,3 @@
-// src/app/Components/About.jsx
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -106,9 +105,9 @@ export default function About() {
               </div>
 
               <div>
-                <h4 className="font-mono text-[10px] sm:text-xs text-[#d4af37] uppercase tracking-wider mb-0.5 sm:mb-1">
+                <p className="font-mono text-[10px] sm:text-xs text-[#d4af37] uppercase tracking-wider mb-0.5 sm:mb-1">
                   Production Mode
-                </h4>
+                </p>
                 <p className="text-[10px] sm:text-[11px] text-white/40 font-light tracking-wide">
                   Hydration Clean & Optimized Infrastructure Framework
                 </p>
@@ -134,7 +133,10 @@ export default function About() {
               className="p-6 sm:p-8 rounded-2xl bg-[#111114]/90 border backdrop-blur-xl relative group transition-all duration-300 min-h-55 sm:min-h-62.5 flex flex-col justify-between w-full"
             >
               <div className="cursor-pointer w-full">
-                <div className="text-xl sm:text-2xl text-[#d4af37] mb-3 sm:mb-4 font-mono select-none">
+                <div
+                  className="text-xl sm:text-2xl text-[#d4af37] mb-3 sm:mb-4 font-mono select-none"
+                  aria-hidden="true"
+                >
                   {card.icon}
                 </div>
                 <h3 className="text-sm sm:text-base font-bold text-[#e2e8f0] mb-2 sm:mb-3 uppercase tracking-wide group-hover:text-[#d4af37] transition-colors duration-200">
@@ -146,7 +148,7 @@ export default function About() {
               </div>
 
               {/* Responsive Micro Arrow UI Element */}
-              <div className="flex justify-end mt-4 w-full">
+              <div className="flex justify-end mt-4 w-full" aria-hidden="true">
                 <div className="text-[#d4af37]/40 group-hover:text-[#d4af37] transition-colors transform group-hover:translate-x-1 duration-300">
                   <svg
                     width="16"
