@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  /* Logo ke mutabiq custom variables */
+  --bg-brand: #0f0f12;
+  --bg-card: #1a1a1e;
+  --color-gold: #d4af37;
+  --color-silver: #e2e8f0;
+
+  /* System default definitions */
+  --background: var(--bg-brand);
+  --foreground: var(--color-silver);
+}
+
+@theme inline {
+  /* Tailwind v4 ke utility classes maps */
+  --color-brandBg: var(--bg-brand);
+  --color-brandCard: var(--bg-card);
+  --color-brandGold: var(--color-gold);
+  --color-brandSilver: var(--color-silver);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
