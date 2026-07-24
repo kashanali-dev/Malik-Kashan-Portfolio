@@ -28,7 +28,9 @@ export const metadata = {
   authors: [{ name: "Malik Kashan" }],
   creator: "Malik Kashan",
   metadataBase: new URL("https://malik-kashan-portfolio.vercel.app/"),
-
+  verification: {
+    google: "v2KWFtlz9ZQ_XELE-59AdmLBPLWkMIHtqIS57JLfMes",
+  },
   // --- FAVICON / TITLE IMAGE CONFIGURATION ---
   icons: {
     icon: "/logo.png", // Agar file src/app/ ya public/ folder mein hai
