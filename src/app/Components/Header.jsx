@@ -31,7 +31,7 @@ export default function Header() {
       >
         {/* Logo and Typography Alignment */}
         <a
-          href="#home"
+          href="/"
           className="flex items-center gap-3 group shrink-0 transition-transform duration-300 hover:scale-[1.01]"
           aria-label="Malik Kashan Portfolio Homepage"
         >
