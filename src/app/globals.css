@@ -1,5 +1,11 @@
 @import "tailwindcss";
+@theme {
+  /* Default sans-serif global font (lock on Montserrat) */
+  --font-sans: var(--font-montserrat), sans-serif;
 
+  /* Extra utility class agar aapko kisi subheading ya element par Poppins lagana ho */
+  --font-poppins: var(--font-poppins), sans-serif;
+}
 :root {
   /* Logo ke mutabiq custom variables */
   --bg-brand: #0f0f12;

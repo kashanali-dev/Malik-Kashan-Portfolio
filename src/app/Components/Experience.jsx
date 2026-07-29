@@ -1,171 +1,222 @@
-"use client";
-import { useState, useEffect } from "react";
+"use client"; // Next.js Client Component tag for Framer Motion
+
+import { useId } from "react";
 import { motion } from "framer-motion";
 
 export default function Experience() {
-  const [mounted, setMounted] = useState(false);
+  const componentId = useId();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  // All 6 balanced cards intact with complete content structures
   const experiences = [
     {
       role: "Senior Frontend Engineer",
       company: "Premium Digital Studio",
-      duration: "2024 - Present",
+      duration: "2024 - 2025",
       type: "Frontend Core",
-      desc: "Engineering scalable consumer-facing web architectures using Next.js, React, and Tailwind CSS. Implementing structural performance metrics, atomic UI design elements, and hydration state optimization loops.",
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      desc: "Engineered scalable consumer-facing web applications. Focused on Core Web Vitals optimization, dynamic lazy hydration patterns, and unified global layout state management structures resulting in maximum client side performance.",
+      tech: [
+        "React.js",
+        "Redux Toolkit",
+        "Framer Motion",
+        "JavaScript ES6+",
+        "Zustand",
+      ],
     },
     {
-      role: "WordPress Architect",
-      company: "Elite Web Solutions",
-      duration: "2022 - 2024",
-      type: "Bespoke CMS",
-      desc: "Designed luxury custom WordPress ecosystems. Built high-performance object-oriented themes from scratch, custom enterprise plugins, tailored WooCommerce hooks, and stable headless decoupled API backends.",
-      tech: ["WordPress", "PHP", "Bespoke Themes", "WooCommerce", "REST API"],
+      role: "Tailwind UI Engineer",
+      company: "Pixel Perfect Systems",
+      duration: "2024 - 2024",
+      type: "Design Systems",
+      desc: "Built a fully bespoke enterprise design system. Engineered production-grade atomic UI layouts utilizing Tailwind CSS configuration tokens, custom fluid themes, and absolute system break-points layout consistency.",
+      tech: ["Tailwind CSS", "PostCSS", "HTML5 / CSS3", "Design Tokens"],
     },
     {
-      role: "Frontend & CMS Specialist",
+      role: "Custom Software Architect",
+      company: "Nexus Labs International",
+      duration: "2024 - Present",
+      type: "Bespoke Solutions",
+      desc: "Engineering premium custom software architectures tailored for specific enterprise use cases. Implementing scalable web patterns, heavy data computational pipelines, and completely tailor-made digital infrastructures.",
+      tech: ["Node.js", "GraphQL", "Docker", "Custom Webhooks"],
+    },
+    {
+      role: "Bootstrap Layout Specialist",
+      company: "Vanguard Web Dynamics",
+      duration: "2023 - 2024",
+      type: "UI Architecture",
+      desc: "Developed high-speed fluid dashboards and SaaS products leveraging enterprise Bootstrap layers. Customized core Sass variables, structured utility-first extensions, and optimized rendering engine output layouts.",
+      tech: ["Bootstrap 5", "Sass / SCSS", "Vanilla JS", "Gulp Automation"],
+    },
+    {
+      role: "React.js Developer",
+      company: "Nexus Software House",
+      duration: "2023 - 2024",
+      type: "SPA Infrastructure",
+      desc: "Developed modern Single Page Applications (SPAs) focused on complex state architectures. Optimized application lifecycle rendering loops to ensure fluid user interactions and micro-animations layouts.",
+      tech: [
+        "React.js",
+        "Context API",
+        "React Router",
+        "Axios",
+        "REST Framework",
+      ],
+    },
+    {
+      role: "Frontend Layout Specialist",
       company: "Creative Agency Hub",
       duration: "2020 - 2022",
       type: "Hybrid Stack",
-      desc: "Engineered elite web structures bridging client-side interfaces with robust dynamic content management matrices. Ensured pixel-perfect rendering layout delivery with absolute device scaling fluidity.",
-      tech: [
-        "JavaScript",
-        "HTML5 / CSS3",
-        "Elementor Pro",
-        "Advanced Custom Fields",
-      ],
+      desc: "Engineered responsive client-side structures bridging static assets mockups with dynamic content management layers. Ensured layout execution fluidity across all responsive viewports layout matrices.",
+      tech: ["JavaScript", "HTML5 / CSS3", "Elementor Pro", "ACF Frameworks"],
     },
   ];
 
-  if (!mounted) return null;
-
-  // Viewport setup for early trigger rendering
-  const viewOptions = { once: true, margin: "-20px" };
-
-  // Container variants to cascade internal elements animations smoothly
+  // Framer Motion Animation Settings
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
     },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 35, scale: 0.98 },
+  const itemVariants = {
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1.0] },
+      transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
     },
   };
 
   return (
     <section
       id="experience"
-      className="relative py-12 sm:py-16 bg-[#0a0a0c] z-20 block overflow-hidden w-full clear-both border-t border-white/2"
+      className="relative py-14 sm:py-20 bg-[#030303] text-white overflow-hidden border-t border-neutral-900 font-sans"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "0 800px" }}
+      aria-labelledby={`${componentId}-heading`}
     >
-      {/* Premium Subtle Ambient Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-65 sm:w-137.5 h-45 sm:h-65 bg-[#d4af37]/3 blur-[90px] sm:blur-[140px] pointer-events-none -z-10" />
+      {/* SaaS Ambient Mesh Grid Background */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f0a_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f0a_1px,transparent_1px)] bg-size-[3rem_3rem] sm:bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"
+        aria-hidden="true"
+      />
 
-      <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        {/* SECTION HEADER WITH REDUCED BOTTOM MARGIN */}
-        <div className="flex flex-col mb-10 sm:mb-14 text-center items-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewOptions}
-            transition={{ duration: 0.4 }}
-            className="text-[#d4af37] text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-2.5 block"
-          >
-            Milestones & Journey
-          </motion.span>
+      {/* Ultra-Premium Linear Glow Accent */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-[#d4af37]/30 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
 
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewOptions}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#e2e8f0] leading-tight uppercase tracking-tight"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+        {/* CENTERED, COMPACT HEADER */}
+        <motion.header
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.4 }}
+          className="text-center mx-auto mb-10 sm:mb-12 max-w-2xl flex flex-col items-center"
+        >
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] sm:text-xs font-mono tracking-widest text-[#d4af37] uppercase mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
+            Career Ledger & Milestones
+          </div>
+          <h2
+            id={`${componentId}-heading`}
+            className="text-2xl sm:text-3xl font-extrabold text-neutral-100 tracking-tight leading-tight uppercase"
           >
-            Professional <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]">
-              Experience
+            Professional{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]/80">
+              Experience.
             </span>
-          </motion.h2>
-        </div>
+          </h2>
+        </motion.header>
 
-        {/* 3-COLUMN RESPONSIVE LAYOUT MATRIX */}
+        {/* 3-COLUMN STRUCTURE WITH PERFECT PARSING CLOSED BLOCKS */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={viewOptions}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 w-full items-stretch"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full items-stretch"
+          itemScope
+          itemType="https://schema.org"
         >
-          {experiences.map((exp, idx) => (
-            <motion.div
-              key={idx}
-              variants={cardVariants}
-              whileHover={{
-                y: -6,
-                borderColor: "rgba(212, 175, 55, 0.35)",
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
-              }}
-              className="group relative p-5 sm:p-7 lg:p-8 rounded-2xl bg-[#111114]/90 border border-white/4 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between w-full select-none"
-            >
-              {/* Inner Radial Hover Highlight Effect */}
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-[#d4af37]/1.5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <meta
+            itemProp="numberOfItems"
+            content={experiences.length.toString()}
+          />
+          <meta
+            itemProp="itemListOrder"
+            content="https://schema.orgOrderDescending"
+          />
 
-              <div>
-                {/* Meta Labels Row with Responsive Sizing */}
-                <div className="flex items-center justify-between gap-2 mb-5">
-                  <span className="inline-block px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-mono tracking-wider bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/20 uppercase">
-                    {exp.type}
-                  </span>
-                  <span className="text-[9px] sm:text-[10px] font-mono text-[#d4af37]/80 bg-white/2 px-2 py-0.5 rounded border border-white/5">
-                    {exp.duration}
-                  </span>
+          {experiences.map((exp, idx) => (
+            <motion.article
+              key={idx}
+              variants={itemVariants}
+              className="group relative p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#09090b]/80 border border-neutral-900 backdrop-blur-sm flex flex-col justify-between w-full transition-colors duration-300 ease-out hover:border-neutral-800 hover:bg-[#0c0c0e] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.7)] transform-gpu will-change-transform"
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org"
+            >
+              <meta itemProp="position" content={(idx + 1).toString()} />
+
+              <div
+                itemProp="item"
+                itemScope
+                itemType="https://schema.org"
+                className="flex flex-col h-full justify-between w-full relative z-10"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-5">
+                    <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-mono tracking-wider bg-neutral-900/90 text-neutral-400 border border-neutral-800 uppercase">
+                      {exp.type}
+                    </span>
+                    <span className="text-[10px] font-mono text-[#d4af37] tracking-widest bg-[#d4af37]/5 px-2.5 py-0.5 rounded-md border border-[#d4af37]/10">
+                      {exp.duration}
+                    </span>
+                  </div>
+
+                  <h3
+                    className="text-base sm:text-lg font-bold text-neutral-200 tracking-wide mb-1 group-hover:text-white transition-colors duration-200 uppercase"
+                    itemProp="jobTitle"
+                  >
+                    {exp.role}
+                  </h3>
+
+                  <div
+                    itemProp="employer"
+                    itemScope
+                    itemType="https://schema.org"
+                  >
+                    <p
+                      className="text-xs text-neutral-500 font-mono tracking-wider mb-5"
+                      itemProp="name"
+                    >
+                      //@ {exp.company}
+                    </p>
+                  </div>
+
+                  <p
+                    className="text-neutral-400 text-xs sm:text-sm leading-relaxed tracking-normal mb-6 font-normal font-sans"
+                    itemProp="description"
+                  >
+                    {exp.desc}
+                  </p>
                 </div>
 
-                {/* Header Titles */}
-                <h3 className="text-sm sm:text-base lg:text-lg font-bold text-[#e2e8f0] tracking-wide mb-0.5 group-hover:text-[#d4af37] transition-colors duration-200">
-                  {exp.role}
-                </h3>
-
-                <p className="text-[11px] sm:text-xs text-white/40 font-mono tracking-wider mb-4">
-                  {exp.company}
-                </p>
-
-                {/* Job Description Text */}
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed tracking-wide mb-6 font-light">
-                  {exp.desc}
-                </p>
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-900 group-hover:border-neutral-800 transition-colors duration-300">
+                  {exp.tech.map((t, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[9px] sm:text-[10px] bg-[#121214] text-neutral-400 px-2.5 py-1 rounded-lg border border-neutral-800/60 tracking-wide font-mono transition-all duration-200 group-hover:border-neutral-800 hover:text-white hover:bg-neutral-900"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              {/* Technology Badges Framework Block */}
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/3">
-                {exp.tech.map((t, tIdx) => (
-                  <motion.span
-                    key={tIdx}
-                    whileHover={{
-                      scale: 1.04,
-                      borderColor: "rgba(255,255,255,0.15)",
-                      color: "#ffffff",
-                    }}
-                    className="text-[9px] sm:text-[10px] bg-white/2 text-[#e2e8f0]/60 px-2.5 py-0.5 rounded border border-white/4 tracking-wide font-light transition-colors duration-150 cursor-default"
-                  >
-                    {t}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
       </div>

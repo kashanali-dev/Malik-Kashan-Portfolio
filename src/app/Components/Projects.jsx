@@ -1,210 +1,262 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useId } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image"; // Upgraded to next/image for production performance optimization
+
+const PROJECT_DATA = [
+  {
+    title: "Oracles Force",
+    category: "React.js Stack",
+    desc: "Oracles Force is an IT company providing professional Web Development and WordPress solutions to help businesses build a strong online presence.",
+    liveLink: "https://oraclesforce.com/",
+    gitLink: "https://github.com/kashanali-dev/oracles-force",
+    image: "/oracles.png",
+    tags: ["React.js", "Context API", "Tailwind CSS", "Mapbox", "Node.js"],
+  },
+  {
+    title: "Kofi Ofori-Mensah Portfolio",
+    category: "Frontend Core",
+    desc: "Kofi Ofori-Mensah works at the intersection of digital marketing, neurodiversity, and platform ethics.",
+    liveLink: "https://kofi-portfolio.vercel.app/",
+    gitLink: "https://github.com/kashanali-dev/Kofi-Portfolio",
+    image: "/kofi.PNG",
+    tags: ["React.js", "TypeScript", "Tailwind CSS", "Chart.js", "Zustand"],
+  },
+  {
+    title: "TerraMore Paginas UE",
+    category: "Web Application",
+    desc: "A modern modular health analytics system featuring state retention orchestration, responsive fluid layout mechanics, and beautifully structured atomic UI design tokens.",
+    liveLink: "https://terra-more.vercel.app/",
+    gitLink: "https://github.com/kashanali-dev/Terra-More",
+    image: "/terramore.png",
+    tags: ["React.js", "Framer Motion", "Tailwind CSS", "Firebase", "REST API"],
+  },
+];
+
+function ProjectCard({ project, index }) {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
+    },
+  };
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ y: -4 }}
+      className="group relative rounded-3xl bg-[#09090b]/80 border border-neutral-900 backdrop-blur-sm flex flex-col justify-between w-full overflow-hidden transition-all duration-300 hover:border-neutral-800 hover:bg-[#0c0c0e] hover:shadow-[0_30px_50px_-10px_rgba(0,0,0,0.8)] transform-gpu will-change-transform"
+      itemProp="itemListElement"
+      itemScope
+      itemType="https://schema.org"
+    >
+      <meta itemProp="position" content={(index + 1).toString()} />
+
+      <div
+        itemProp="item"
+        itemScope
+        itemType="https://schema.org"
+        className="flex flex-col h-full justify-between w-full"
+      >
+        {/* 1. Image Canvas - Optimized using Next.js native components to prevent CLS */}
+        <div className="relative w-full aspect-16/10 overflow-hidden bg-[#121214] block">
+          <Image
+            src={project.image}
+            alt={`${project.title} project interface preview showcasing dashboard elements`}
+            width={640}
+            height={400}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={index === 0} // Highest speed scoring optimization for LCP element
+            loading={index === 0 ? undefined : "lazy"}
+            className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.02] transition-transform duration-500 filter brightness-[0.75] group-hover:brightness-[0.9] contrast-[1.02]"
+            itemProp="image"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-[#09090b] via-transparent to-transparent opacity-90 pointer-events-none" />
+
+          <span className="absolute top-4 left-4 inline-block px-2.5 py-0.5 rounded font-mono text-[9px] tracking-wider bg-neutral-950/80 text-[#d4af37] border border-[#d4af37]/20 uppercase backdrop-blur-md shadow-lg z-10">
+            {project.category}
+          </span>
+
+          <span
+            className="absolute top-4 right-4 font-mono text-[10px] tracking-wider text-neutral-700 font-bold z-10"
+            aria-hidden="true"
+          >
+            //0{index + 1}
+          </span>
+        </div>
+
+        {/* 2. Content Info Text & Explicit Accessibility Buttons Segment */}
+        <div className="p-6 flex flex-col justify-between grow relative">
+          <div>
+            <h3
+              className="text-base sm:text-lg font-bold text-neutral-200 tracking-wide mb-2 group-hover:text-[#d4af37] transition-colors duration-200 uppercase"
+              itemProp="name"
+            >
+              {project.title}
+            </h3>
+
+            <p
+              className="text-neutral-400 text-xs sm:text-[13px] leading-relaxed tracking-normal mb-5 font-normal font-sans"
+              itemProp="description"
+            >
+              {project.desc}
+            </p>
+
+            {/* Permanent Action Buttons with Descriptive Accessibility Tags */}
+            <div className="flex items-center gap-2.5 mb-6">
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View live demonstration of ${project.title}`}
+                className="px-3.5 py-2 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-200 font-medium text-[11px] tracking-wide shadow-md hover:bg-white hover:text-black hover:border-white transition-all duration-200 flex items-center gap-1.5"
+              >
+                Live Demo
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+              <a
+                href={project.gitLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View compilation source code for ${project.title} on GitHub`}
+                className="px-3.5 py-2 rounded-xl bg-transparent border border-neutral-800 text-neutral-400 font-medium text-[11px] tracking-wide hover:bg-neutral-900 hover:text-white transition-all duration-200 flex items-center gap-1.5"
+              >
+                Code
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* 3. Tech Stack Badge Framework */}
+          <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-900/60 w-full">
+            {project.tags.map((tag, tIdx) => (
+              <span
+                key={tIdx}
+                className="text-[9px] sm:text-[10px] bg-[#121214] text-neutral-400 px-2.5 py-1 rounded-md border border-neutral-800/60 tracking-wide font-mono transition-all duration-200"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Projects() {
   const [mounted, setMounted] = useState(false);
+  const componentId = useId();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const projectData = [
-    {
-      title: "Oracles Force",
-      category: "React.js Stack",
-      desc: "Oracles Force is an IT company providing professional Web Development and WordPress solutions to help businesses build a strong online presence.",
-      liveLink: "https://oraclesforce.com/",
-      gitLink: "https://github.com/kashanali-dev/oracles-force",
-      image: "/oracles.png",
-      tags: ["React.js", "Context API", "Tailwind CSS", "Mapbox", "Node.js"],
-    },
-    {
-      title: "Kofi Ofori-Mensah Portfolio",
-      category: "Frontend Core",
-      desc: "Kofi Ofori-Mensah works at the intersection of digital marketing, neurodiversity, and platform ethics.",
-      liveLink: "https://kofi-portfolio.vercel.app/",
-      gitLink: "https://github.com/alihumdard/kofi-portfolio",
-      image: "/kofi.PNG",
-      tags: ["React.js", "TypeScript", "Tailwind CSS", "Chart.js", "Zustand"],
-    },
-    {
-      title: "Fitness & Wellness Platform",
-      category: "Web Application",
-      desc: "A modern modular health analytics system featuring state retention orchestration, responsive fluid layout mechanics, and beautifully structured atomic UI design tokens.",
-      liveLink: "#",
-      gitLink: "#",
-      image:
-        "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
-      tags: [
-        "React.js",
-        "Framer Motion",
-        "Tailwind CSS",
-        "Firebase",
-        "REST API",
-      ],
-    },
-  ];
-
   if (!mounted) return null;
 
-  const viewOptions = { once: true, margin: "-40px" };
+  const viewOptions = { once: true, margin: "-100px" };
 
   const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1.0] },
+      transition: { staggerChildren: 0.1, delayChildren: 0.05 },
     },
   };
 
   return (
     <section
       id="projects"
-      className="relative py-12 sm:py-16 bg-[#0a0a0c] z-20 block overflow-hidden w-full clear-both border-t border-white/2"
+      className="relative py-16 sm:py-20 bg-[#030303] text-white overflow-hidden border-t border-neutral-900 font-sans"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "0 900px" }}
+      aria-labelledby={`${componentId}-heading`}
     >
-      {/* Luxury Background Ambient Glow - Compressed Sizing */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-70 sm:w-150 h-50 sm:h-70 bg-[#d4af37]/2 blur-[100px] sm:blur-[140px] pointer-events-none -z-10" />
+      <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f0a_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f0a_1px,transparent_1px)] bg-size-[3rem_3rem] sm:bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"
+        aria-hidden="true"
+      />
 
-      <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        {/* SECTION HEADER WITH COMPACT BOTTOM GAPS */}
-        <div className="flex flex-col mb-10 sm:mb-12 text-center items-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-[#d4af37]/30 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+        <header className="flex flex-col mb-12 sm:mb-16 text-center items-center max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewOptions}
             transition={{ duration: 0.4 }}
-            className="text-[#d4af37] text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-2 block"
+            className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] sm:text-xs font-mono tracking-widest text-[#d4af37] uppercase mb-3"
           >
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-[#d4af37]"
+              aria-hidden="true"
+            />
             My Recent Creations
-          </motion.span>
+          </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewOptions}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#e2e8f0] leading-tight uppercase tracking-tight"
+          <h2
+            id={`${componentId}-heading`}
+            className="text-2xl sm:text-4xl font-extrabold text-[#e2e8f0] leading-tight uppercase tracking-tight"
           >
-            Featured <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]">
-              Projects
+            Featured{" "}
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]/80">
+              Projects.
             </span>
-          </motion.h2>
-        </div>
+          </h2>
+        </header>
 
-        {/* 3-COLUMN RESPONSIVE LAYOUT MATRIX */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={viewOptions}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 w-full items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full items-stretch"
+          itemScope
+          itemType="https://schema.org"
         >
-          {projectData.map((project, idx) => (
-            <motion.div
-              key={idx}
-              variants={cardVariants}
-              whileHover={{
-                y: -6,
-                borderColor: "rgba(212, 175, 55, 0.35)",
-                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.7)",
-              }}
-              className="group relative rounded-2xl bg-[#111114]/90 border border-white/4 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between w-full overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.5)] select-none"
-            >
-              {/* Top Image Banner Container with Dual Gradient Processing Masks */}
-              <div className="relative w-full aspect-16/10 overflow-hidden bg-[#151518] border-b border-white/3">
-                <img
-                  src={project.image}
-                  alt={`${project.title} - ${project.category}`}
-                  loading="lazy"
-                  className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500 filter brightness-[0.8] group-hover:brightness-[0.95] contrast-[1.02]"
-                />
+          <meta
+            itemProp="numberOfItems"
+            content={PROJECT_DATA.length.toString()}
+          />
+          <meta
+            itemProp="itemListOrder"
+            content="https://schema.orgOrderAscending"
+          />
 
-                {/* Micro Ambient Depth Shadow Overlays */}
-                <div className="absolute inset-0 bg-linear-to-t from-[#111114] via-[#111114]/30 to-transparent opacity-90" />
-                <div className="absolute inset-0 bg-[#0a0a0c]/10 group-hover:opacity-0 transition-opacity duration-300" />
-
-                {/* Floating Meta Framework Label */}
-                <span className="absolute top-3.5 left-3.5 inline-block px-2 py-0.5 rounded font-mono text-[8px] sm:text-[9px] tracking-wider bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/20 uppercase shadow-md backdrop-blur-md">
-                  {project.category}
-                </span>
-
-                {/* Micro Index Number Tag */}
-                <span
-                  className="absolute top-3.5 right-3.5 font-mono text-[9px] sm:text-[10px] tracking-wider text-white/20 group-hover:text-[#d4af37]/50 transition-colors"
-                  aria-hidden="true"
-                >
-                  //0{idx + 1}
-                </span>
-              </div>
-
-              {/* Bottom Content Frame Area */}
-              <div className="p-5 sm:p-6 flex flex-col justify-between grow relative">
-                {/* Subtle Luxury Corner Glow Effect */}
-                <div className="absolute top-0 right-0 w-12 h-12 bg-linear-to-bl from-[#d4af37]/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" />
-
-                <div>
-                  {/* Project Main Title */}
-                  <h3 className="text-sm sm:text-base lg:text-lg font-bold text-[#e2e8f0] tracking-wide mb-2 group-hover:text-[#d4af37] transition-colors duration-200">
-                    {project.title}
-                  </h3>
-
-                  {/* Body Scope Project Paragraph */}
-                  <p className="text-white/45 text-xs sm:text-[13px] leading-relaxed tracking-wide mb-5 font-light">
-                    {project.desc}
-                  </p>
-                </div>
-
-                {/* Tech Badges & Interactive Link Rows Container */}
-                <div className="flex flex-col gap-3.5 pt-4 border-t border-white/3 w-full">
-                  {/* Technology Badges Matrix */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((t, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[9px] sm:text-[10px] bg-white/2 text-[#e2e8f0]/50 px-2 py-0.5 rounded border border-white/3 tracking-wide font-light transition-all group-hover:border-white/10 group-hover:text-[#e2e8f0]/70"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links Reveal Area with Underline Effects */}
-                  <div className="flex items-center gap-4.5 mt-0.5 overflow-hidden h-6 relative">
-                    <a
-                      href={project.liveLink}
-                      target={project.liveLink !== "#" ? "_blank" : "_self"}
-                      rel="noopener noreferrer"
-                      aria-label={`View Live Demo of ${project.title}`}
-                      className="text-[10px] sm:text-[11px] font-mono font-medium text-[#d4af37] hover:text-[#f3e5ab] transition-colors flex items-center gap-1 uppercase tracking-widest relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-px after:bg-[#d4af37] after:transition-all after:duration-300"
-                    >
-                      Live Demo ↗
-                    </a>
-                    <a
-                      href={project.gitLink}
-                      target={project.gitLink !== "#" ? "_blank" : "_self"}
-                      rel="noopener noreferrer"
-                      aria-label={`View Source Code of ${project.title} on GitHub`}
-                      className="text-[10px] sm:text-[11px] font-mono text-white/40 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-widest"
-                    >
-                      Source Code
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          {PROJECT_DATA.map((project, idx) => (
+            <ProjectCard key={project.title} project={project} index={idx} />
           ))}
         </motion.div>
       </div>
