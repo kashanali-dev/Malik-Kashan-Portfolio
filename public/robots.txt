@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://malik-kashan-portfolio.vercel.app/sitemap.xml

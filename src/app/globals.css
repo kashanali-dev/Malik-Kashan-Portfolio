@@ -1,29 +1,54 @@
 @import "tailwindcss";
-@theme {
-  /* Default sans-serif global font (lock on Montserrat) */
-  --font-sans: var(--font-montserrat), sans-serif;
 
-  /* Extra utility class agar aapko kisi subheading ya element par Poppins lagana ho */
-  --font-poppins: var(--font-poppins), sans-serif;
+/* ==========================================================================
+   FONT SYSTEM — Poppins (self-hosted via next/font) with Montserrat/Arial
+   fallbacks. Local .ttc/.otf files removed for performance (6.6MB saving).
+   ========================================================================== */
+
+@theme {
+  /* Default sans-serif global font (Poppins) */
+  --font-sans: var(--font-poppins);
+
+  /* Display headings */
+  --font-display: var(--font-poppins);
+
+  /* Statistic labels */
+  --font-stat: var(--font-poppins);
 }
+
 :root {
-  /* Logo ke mutabiq custom variables */
-  --bg-brand: #0f0f12;
-  --bg-card: #1a1a1e;
-  --color-gold: #d4af37;
-  --color-silver: #e2e8f0;
+  /* Light blue/cyan professional theme */
+  --bg-brand: #f6f8fb; /* main page background */
+  --bg-card: #ffffff; /* card / surface */
+  --bg-soft: #eef2f7; /* subtle nested surface */
+  --color-primary: #0891b2; /* cyan-600 — primary accent */
+  --color-secondary: #18a7f8; /* sky-500 — secondary accent (button hover) */
+  --color-ink: #0f172a; /* slate-900 — headings / strong text */
+  --color-muted: #475569; /* slate-600 — body text */
+  --color-line: #e2e8f0; /* slate-200 — borders / dividers */
+
+  /* Font stack: Poppins (web) → Montserrat → Arial → system */
+  --font-poppins: "Poppins", "Montserrat", Arial, ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+  --font-dxmonstral: var(--font-poppins);
+  --font-helvetica: var(--font-poppins);
+  --font-gcvank: var(--font-poppins);
 
   /* System default definitions */
   --background: var(--bg-brand);
-  --foreground: var(--color-silver);
+  --foreground: var(--color-ink);
 }
 
 @theme inline {
-  /* Tailwind v4 ke utility classes maps */
+  /* Tailwind v4 utility class maps */
   --color-brandBg: var(--bg-brand);
   --color-brandCard: var(--bg-card);
-  --color-brandGold: var(--color-gold);
-  --color-brandSilver: var(--color-silver);
+  --color-brandSoft: var(--bg-soft);
+  --color-brandPrimary: var(--color-primary);
+  --color-brandSecondary: var(--color-secondary);
+  --color-brandInk: var(--color-ink);
+  --color-brandMuted: var(--color-muted);
+  --color-brandLine: var(--color-line);
 }
 
 html {
@@ -33,48 +58,161 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins);
   margin: 0;
 }
+
+/* Poppins applied to all real headings. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-poppins);
+  font-synthesis: none;
+}
+
+/* ==========================================================================
+   LIGHTER BUTTON BACKGROUNDS
+   Overrides the solid `bg-brandPrimary` utility only (buttons, dots, badges).
+   Subtle backgrounds (bg-brandPrimary/10 etc.) and text accents
+   (text-brandPrimary) stay on the original brand color for contrast.
+   ========================================================================== */
+@layer utilities {
+  .bg-brandPrimary {
+    background-color: #06b6d4; /* cyan-500 — lighter than cyan-600 #0891b2 */
+  }
+}
+
 /* ==========================================================================
    PREMIUM MINIMALIST CUSTOM SCROLLBAR FOR MALIK KASHAN PORTFOLIO
    ========================================================================== */
 
 /* 1. Scrollbar ke poore structure ki width set karna */
 ::-webkit-scrollbar {
-  width: 8px; /* Default se kafi patla aur sleek look */
-  height: 8px; /* Horizontal scrollbar ke liye */
+  width: 8px;
+  height: 8px;
 }
 
-/* 2. Scrollbar ka background track (Right side border lane ke liye) */
+/* 2. Scrollbar ka background track */
 ::-webkit-scrollbar-track {
-  background: #0a0a0c; /* Aapke section ka main background color */
-  border-left: 1px solid rgba(255, 255, 255, 0.02); /* Ek subtle separated layer line */
+  background: #eef2f7;
+  border-left: 1px solid rgba(15, 23, 42, 0.04);
 }
 
-/* 3. Rolling Thumb (Jo handle user drag karta hai) */
+/* 3. Rolling Thumb */
 ::-webkit-scrollbar-thumb {
-  background: rgba(
-    212,
-    175,
-    55,
-    0.15
-  ); /* Luxury Premium Gold tone with transparency */
-  border-radius: 20px; /* Fully rounded elegant pill look */
-  border: 2px solid #0a0a0c; /* Track ke andar floating overlay effect dene ke liye spacing padding padding */
+  background: rgba(8, 145, 178, 0.25);
+  border-radius: 20px;
+  border: 2px solid #eef2f7;
   transition: all 0.3s ease;
 }
 
-/* 4. Active Hover state jab user scrollbar par mouse le jaye */
+/* 4. Hover state */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6); /* Gold color sharp ho jayega */
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); /* Subtle ambient gold glare glow */
+  background: rgba(8, 145, 178, 0.65);
+  box-shadow: 0 0 12px rgba(8, 145, 178, 0.4);
 }
 
-/* Firefox browsers ke liye support wrapper metrics */
+/* Firefox browsers ke liye support */
+/* ==========================================================================
+   CURSOR BLINK ANIMATION FOR HERO TYPEWRITER
+   ========================================================================== */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   SKELETON LOADER SHIMMER (section loading placeholders)
+   ========================================================================== */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #eef2f7 25%,
+    #e2e8f0 37%,
+    #eef2f7 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
 @supports (scrollbar-color: auto) {
   html {
-    scrollbar-color: rgba(212, 175, 55, 0.2) #0a0a0c;
+    scrollbar-color: rgba(8, 145, 178, 0.35) #eef2f7;
     scrollbar-width: thin;
+  }
+}
+
+/* ==========================================================================
+   ANIMATED GRADIENT BORDER (Hire Me header button)
+   ========================================================================== */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.animated-border {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      #0891b2,
+      #22d3ee,
+      #67e8f9,
+      #0891b2
+    ) border-box;
+  animation: border-rotate 3.5s linear infinite;
+}
+
+@keyframes border-rotate {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@supports not (background: paint(foo)) {
+  .animated-border {
+    border-color: rgba(8, 145, 178, 0.35);
+    background: #fff;
+  }
+}
+
+@media (max-width: 640px) {
+  [class*="shadow-[0_10px"] {
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06) !important;
+  }
+  [class*="shadow-[0_16px"] {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important;
+  }
+  [class*="shadow-[0_8px"] {
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06) !important;
+  }
+  .shadow-lg {
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1) !important;
+  }
+  .shadow-md {
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08) !important;
+  }
+  .shadow-sm {
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06) !important;
   }
 }

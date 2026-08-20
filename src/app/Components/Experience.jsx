@@ -91,19 +91,19 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-14 sm:py-20 bg-[#030303] text-white overflow-hidden border-t border-neutral-900 font-sans"
+      className="relative py-12 sm:py-16 lg:py-16 bg-white text-brandInk overflow-hidden border-t border-brandLine font-sans scroll-mt-28"
       style={{ contentVisibility: "auto", containIntrinsicSize: "0 800px" }}
       aria-labelledby={`${componentId}-heading`}
     >
       {/* SaaS Ambient Mesh Grid Background */}
       <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f0a_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f0a_1px,transparent_1px)] bg-size-[3rem_3rem] sm:bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"
+        className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a04_1px,transparent_1px),linear-gradient(to_bottom,#0f172a04_1px,transparent_1px)] bg-size-[3rem_3rem] sm:bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"
         aria-hidden="true"
       />
 
       {/* Ultra-Premium Linear Glow Accent */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-[#d4af37]/30 to-transparent pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-brandPrimary/30 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
@@ -114,20 +114,17 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
-          className="text-center mx-auto mb-10 sm:mb-12 max-w-2xl flex flex-col items-center"
+          className="text-center mx-auto mb-8 sm:mb-12 max-w-2xl flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-[10px] sm:text-xs font-mono tracking-widest text-[#d4af37] uppercase mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-brandPrimary/10 border border-brandPrimary/20 text-[10px] sm:text-xs font-mono tracking-widest text-brandPrimary uppercase mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-brandPrimary" />
             Career Ledger & Milestones
           </div>
           <h2
             id={`${componentId}-heading`}
-            className="text-2xl sm:text-3xl font-extrabold text-neutral-100 tracking-tight leading-tight uppercase"
+            className="text-2xl sm:text-3xl font-extrabold text-brandInk tracking-tight leading-tight uppercase"
           >
-            Professional{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]/80">
-              Experience.
-            </span>
+            Professional <span className="text-brandPrimary">Experience.</span>
           </h2>
         </motion.header>
 
@@ -139,7 +136,7 @@ export default function Experience() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full items-stretch"
           itemScope
-          itemType="https://schema.org"
+          itemType="https://schema.org/ItemList"
         >
           <meta
             itemProp="numberOfItems"
@@ -147,38 +144,38 @@ export default function Experience() {
           />
           <meta
             itemProp="itemListOrder"
-            content="https://schema.orgOrderDescending"
+            content="https://schema.org/OrderDescending"
           />
 
           {experiences.map((exp, idx) => (
             <motion.article
               key={idx}
               variants={itemVariants}
-              className="group relative p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#09090b]/80 border border-neutral-900 backdrop-blur-sm flex flex-col justify-between w-full transition-colors duration-300 ease-out hover:border-neutral-800 hover:bg-[#0c0c0e] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.7)] transform-gpu will-change-transform"
+              className="group relative p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-white border border-brandLine backdrop-blur-sm flex flex-col justify-between w-full transition-all duration-300 ease-out hover:border-brandPrimary/30 hover:shadow-[0_14px_28px_-12px_rgba(15,23,42,0.1)] transform-gpu will-change-transform"
               itemProp="itemListElement"
               itemScope
-              itemType="https://schema.org"
+              itemType="https://schema.org/ListItem"
             >
               <meta itemProp="position" content={(idx + 1).toString()} />
 
               <div
                 itemProp="item"
                 itemScope
-                itemType="https://schema.org"
+                itemType="https://schema.org/CreativeWork"
                 className="flex flex-col h-full justify-between w-full relative z-10"
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-5">
-                    <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-mono tracking-wider bg-neutral-900/90 text-neutral-400 border border-neutral-800 uppercase">
+                    <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-mono tracking-wider bg-brandSoft text-brandMuted border border-brandLine uppercase">
                       {exp.type}
                     </span>
-                    <span className="text-[10px] font-mono text-[#d4af37] tracking-widest bg-[#d4af37]/5 px-2.5 py-0.5 rounded-md border border-[#d4af37]/10">
+                    <span className="text-[10px] font-mono text-brandPrimary tracking-widest bg-brandPrimary/5 px-2.5 py-0.5 rounded-md border border-brandPrimary/15">
                       {exp.duration}
                     </span>
                   </div>
 
                   <h3
-                    className="text-base sm:text-lg font-bold text-neutral-200 tracking-wide mb-1 group-hover:text-white transition-colors duration-200 uppercase"
+                    className="text-base sm:text-lg font-bold text-brandInk tracking-wide mb-1 group-hover:text-brandPrimary transition-colors duration-200 uppercase"
                     itemProp="jobTitle"
                   >
                     {exp.role}
@@ -187,29 +184,29 @@ export default function Experience() {
                   <div
                     itemProp="employer"
                     itemScope
-                    itemType="https://schema.org"
+                    itemType="https://schema.org/Organization"
                   >
                     <p
-                      className="text-xs text-neutral-500 font-mono tracking-wider mb-5"
+                      className="text-xs text-brandMuted/70 font-mono tracking-wider mb-5"
                       itemProp="name"
                     >
-                      //@ {exp.company}
+                      <span aria-hidden="true">{`//@`}</span> {exp.company}
                     </p>
                   </div>
 
                   <p
-                    className="text-neutral-400 text-xs sm:text-sm leading-relaxed tracking-normal mb-6 font-normal font-sans"
+                    className="text-brandMuted text-xs sm:text-sm leading-relaxed tracking-normal mb-6 font-normal font-sans"
                     itemProp="description"
                   >
                     {exp.desc}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-900 group-hover:border-neutral-800 transition-colors duration-300">
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-brandLine group-hover:border-brandPrimary/20 transition-colors duration-300">
                   {exp.tech.map((t, tIdx) => (
                     <span
                       key={tIdx}
-                      className="text-[9px] sm:text-[10px] bg-[#121214] text-neutral-400 px-2.5 py-1 rounded-lg border border-neutral-800/60 tracking-wide font-mono transition-all duration-200 group-hover:border-neutral-800 hover:text-white hover:bg-neutral-900"
+                      className="text-[9px] sm:text-[10px] bg-brandSoft text-brandMuted px-2.5 py-1 rounded-lg border border-brandLine tracking-wide font-mono transition-all duration-200 group-hover:border-brandPrimary/20 hover:text-brandPrimary hover:bg-brandPrimary/10"
                     >
                       {t}
                     </span>

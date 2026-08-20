@@ -1,67 +1,79 @@
 // src/app/page.jsx
 import dynamic from "next/dynamic";
 
-// Next.js static component imports for above-the-fold content (LCP Boost 🚀)
-import Header from "./Components/Header";
+// Next.js static component import for above-the-fold content (LCP Boost 🚀)
 import Hero from "./Components/Hero";
-import Footer from "./Components/Footer";
+import BlogPreview from "./Components/BlogPreview";
 
-// Your Custom Color Scheme-Based Dynamic Loading Component
-const ModernBrandedLoader = () => (
-  <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0d0d0f] antialiased">
-    <div className="relative flex h-20 w-20 items-center justify-center">
-      {/* Outer spinning dash ring using your brandGold theme */}
-      <div className="absolute h-full w-full animate-spin rounded-full border-4 border-t-brandGold border-r-transparent border-b-transparent border-l-transparent" />
-
-      {/* Middle delay-spinning secondary accent tracker */}
-      <div className="absolute h-14 w-14 animate-[spin_1.5s_linear_infinite] rounded-full border-2 border-b-brandGold/30 border-t-transparent border-r-transparent border-l-transparent" />
-
-      {/* Inner neon glowing pulse core container */}
-      <div className="h-6 w-6 animate-pulse rounded-full bg-brandGold shadow-[0_0_25px_rgba(212,175,55,0.7)]" />
+// Custom light-theme section skeleton loader.
+// Shown only briefly while a below-the-fold dynamic chunk hydrates.
+const SectionSkeleton = () => (
+  <div className="relative w-full bg-brandBg" aria-hidden="true">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="flex flex-col items-center mb-10">
+        <div className="h-5 w-44 rounded-full skeleton-shimmer" />
+        <div className="mt-4 h-8 w-72 max-w-full rounded-xl skeleton-shimmer" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div
+            key={i}
+            className="rounded-3xl bg-white border border-brandLine p-6"
+          >
+            <div className="h-4 w-24 rounded-md skeleton-shimmer mb-5" />
+            <div className="h-3 w-full rounded-md skeleton-shimmer mb-2.5" />
+            <div className="h-3 w-5/6 rounded-md skeleton-shimmer mb-2.5" />
+            <div className="h-3 w-4/6 rounded-md skeleton-shimmer mb-8" />
+            <div className="h-10 w-36 rounded-xl skeleton-shimmer" />
+          </div>
+        ))}
+      </div>
     </div>
-
-    {/* Subtle futuristic monospaced load string */}
-    <span className="mt-6 font-mono text-[10px] uppercase tracking-[0.35em] text-brandSilver/50 animate-pulse">
-      Initializing Terminal...
-    </span>
   </div>
 );
 
 // 1. SPEED OPTIMIZATION: Non-critical below-the-fold components are loaded lazily.
-// This splits your bundles into micro-chunks, dropping your TBT (Total Blocking Time) to near 0ms.
 const About = dynamic(() => import("./Components/About"), {
-  loading: () => <ModernBrandedLoader />,
-  ssr: true, // Retains HTML markup capability for excellent standard crawlers indexing
+  loading: () => <SectionSkeleton />,
+  ssr: true,
 });
 
 const Experience = dynamic(() => import("./Components/Experience"), {
-  loading: () => <ModernBrandedLoader />,
+  loading: () => <SectionSkeleton />,
+  ssr: true,
+});
+
+const Skills = dynamic(() => import("./Components/Skills"), {
+  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
 const Projects = dynamic(() => import("./Components/Projects"), {
-  loading: () => <ModernBrandedLoader />,
+  loading: () => <SectionSkeleton />,
+  ssr: true,
+});
+
+const Testimonials = dynamic(() => import("./Components/Testimonials"), {
+  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
 const Contact = dynamic(() => import("./Components/Contact"), {
-  loading: () => <ModernBrandedLoader />,
+  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
 export default function Home() {
   return (
-    <>
-      {/* Semantic structure elements built identically for pristine accessibility validation */}
-      <Header />
-      <main className="relative bg-brandBg overflow-hidden selection:bg-brandGold selection:text-brandBg">
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <main className="relative bg-brandBg overflow-hidden selection:bg-brandPrimary selection:text-white">
+      <Hero />
+      <About />
+      <Skills />
+      <Experience />
+      <Projects />
+      <Testimonials />
+      <BlogPreview />
+      <Contact />
+    </main>
   );
 }

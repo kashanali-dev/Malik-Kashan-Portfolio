@@ -1,5 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Counter from "./Counter";
+
+const stats = [
+  { value: 50, suffix: "+", label: "Projects Delivered" },
+  { value: 5, suffix: "+", label: "Years Experience" },
+  { value: 40, suffix: "+", label: "Happy Clients" },
+  { value: 100, suffix: "%", label: "On-Time Delivery" },
+];
 
 export default function About() {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -24,7 +34,7 @@ export default function About() {
         "Our website development service focuses on creating custom, lightning-fast web applications tailored to your business goals. We utilize cutting-edge technologies like Next.js and Tailwind CSS to ensure top-notch performance, high SEO rankings, and seamless user experiences across all devices.",
       icon: (
         <svg
-          className="w-5 h-5 text-[#d4af37] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+          className="w-5 h-5 text-brandPrimary transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
@@ -45,7 +55,7 @@ export default function About() {
         "We build scalable, component-driven React applications with exceptional UI/UX design. From complex single-page apps (SPAs) to dynamic dashboards, our state-management and modern design practices deliver smooth and highly responsive user interfaces.",
       icon: (
         <svg
-          className="w-6 h-6 text-[#d4af37] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-180"
+          className="w-6 h-6 text-brandPrimary transition-transform duration-700 group-hover:scale-110 group-hover:rotate-180"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -78,7 +88,7 @@ export default function About() {
         "Get fully customized WordPress websites, Elementor landing pages, and secure WooCommerce online stores. We ensure your WordPress site is fast, easy to manage, secure, and fully optimized to drive sales and business growth.",
       icon: (
         <svg
-          className="w-5 h-5 text-[#d4af37] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
+          className="w-5 h-5 text-brandPrimary transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -92,62 +102,61 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-16 sm:py-20 bg-[#0a0a0c] block w-full font-sans"
+      className="relative py-12 sm:py-16 lg:py-16 bg-white block w-full font-sans scroll-mt-28"
       aria-label="About Malik Kashan and Services"
     >
       {/* Background Glow */}
       <div
-        className="absolute top-0 right-0 w-72 sm:w-125 h-72 sm:h-125 bg-[#d4af37]/5 blur-[120px] sm:blur-[180px] pointer-events-none -z-10"
+        className="absolute top-0 right-0 w-72 sm:w-125 h-72 sm:h-125 bg-brandPrimary/8 blur-[120px] sm:blur-[180px] pointer-events-none -z-10"
         aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* TOP SECTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-12 sm:mb-16">
           <header className="lg:col-span-6 text-center lg:text-left">
-            <span className="text-[#d4af37] text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-3 block">
+            <span className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-brandPrimary/10 border border-brandPrimary/20 text-[10px] sm:text-xs font-mono tracking-widest text-brandPrimary uppercase mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-brandPrimary" />
               Professional Bio
             </span>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#e2e8f0] leading-tight mb-5 sm:mb-6 uppercase tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-brandInk leading-tight mb-5 sm:mb-6 uppercase tracking-tight">
               Working <br className="hidden lg:block" />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#d4af37] via-[#ffffff] to-[#d4af37]">
-                With Precision
-              </span>
-            </h1>
+              <span className="text-brandPrimary">With Precision</span>
+            </h2>
 
-            <p className="text-[#e2e8f0]/70 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+            <p className="text-brandMuted text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
               I am Malik Kashan, a specialist in engineering premium digital
               interfaces. My approach focuses on bridging the gap between elite
               design aesthetics and high-performance technical execution.
             </p>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-[#d4af37] text-[#0a0a0c] text-xs font-bold uppercase tracking-widest rounded-lg shadow-lg shadow-[#d4af37]/10 hover:shadow-[#d4af37]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-brandPrimary text-white text-xs font-bold uppercase tracking-widest rounded-lg shadow-lg shadow-brandPrimary/20 hover:bg-brandSecondary hover:shadow-brandSecondary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
             >
-              Get In Touch
-            </a>
+              Hire Me
+            </Link>
           </header>
 
           {/* Right Side Enhanced Developer Card */}
           <div className="lg:col-span-6 relative w-full mt-4 lg:mt-0 flex justify-center lg:justify-end">
             <div
-              className="absolute -top-4 -left-4 w-full h-full rounded-2xl bg-linear-to-br from-[#d4af37]/10 to-transparent border border-[#d4af37]/20 pointer-events-none"
+              className="absolute -top-4 -left-4 w-full h-full rounded-2xl bg-linear-to-br from-brandPrimary/10 to-transparent border border-brandPrimary/20 pointer-events-none"
               aria-hidden="true"
             />
 
-            <article className="relative w-full max-w-lg rounded-2xl bg-[#111114] border border-[#d4af37]/30 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden p-6 sm:p-8 z-10 group">
+            <article className="relative w-full max-w-lg rounded-2xl bg-white border border-brandPrimary/25 shadow-[0_10px_30px_rgba(15,23,42,0.08)] overflow-hidden p-6 sm:p-8 z-10 group">
               {/* Card Header Status */}
-              <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/5">
+              <div className="flex justify-between items-center mb-6 pb-4 border-b border-brandLine">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#d4af37] animate-pulse" />
-                  <span className="font-mono text-xs text-[#d4af37] font-semibold tracking-wider uppercase">
+                  <div className="w-3 h-3 rounded-full bg-brandPrimary animate-pulse" />
+                  <span className="font-mono text-xs text-brandPrimary font-semibold tracking-wider uppercase">
                     Live System Core
                   </span>
                 </div>
                 <span
-                  className="font-mono text-[10px] text-white/40 px-2.5 py-1 rounded-md bg-white/5 border border-white/10 tracking-widest"
+                  className="font-mono text-[10px] text-brandMuted/50 px-2.5 py-1 rounded-md bg-brandSoft border border-brandLine tracking-widest"
                   aria-hidden="true"
                 >
                   v2.06.PRO
@@ -157,10 +166,10 @@ export default function About() {
               {/* Card Main Info */}
               <div className="space-y-4">
                 <div>
-                  <h2 className="text-white text-base sm:text-lg font-bold uppercase tracking-wide mb-1 group-hover:text-[#d4af37] transition-colors">
+                  <h2 className="text-brandInk text-base sm:text-lg font-bold uppercase tracking-wide mb-1 group-hover:text-brandPrimary transition-colors">
                     Malik Kashan Architecture
                   </h2>
-                  <p className="text-white/50 text-xs sm:text-sm font-light leading-relaxed">
+                  <p className="text-brandMuted text-xs sm:text-sm font-light leading-relaxed">
                     Delivering zero-latency UI components, robust backend
                     integrations, and pixel-perfect responsive layouts.
                   </p>
@@ -168,13 +177,13 @@ export default function About() {
 
                 {/* Tech Pills */}
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-[#d4af37]/10 text-[#d4af37] rounded-full border border-[#d4af37]/20">
-                    Next.js 15
+                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-brandPrimary/10 text-brandPrimary rounded-full border border-brandPrimary/20">
+                    Next.js 16
                   </span>
-                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-white/5 text-white/70 rounded-full border border-white/10">
+                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-brandSoft text-brandMuted rounded-full border border-brandLine">
                     Tailwind CSS
                   </span>
-                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-white/5 text-white/70 rounded-full border border-white/10">
+                  <span className="px-3 py-1 text-[10px] font-mono font-medium bg-brandSoft text-brandMuted rounded-full border border-brandLine">
                     React Ecosystem
                   </span>
                 </div>
@@ -182,39 +191,98 @@ export default function About() {
 
               {/* Bottom decorative bar */}
               <div
-                className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-[#d4af37] to-transparent opacity-50"
+                className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-brandPrimary to-transparent opacity-50"
                 aria-hidden="true"
               />
             </article>
           </div>
         </div>
 
-        {/* BOTTOM SECTION: Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-20 w-full">
-          {featureCards.map((card, idx) => (
-            <article
-              key={idx}
-              className="p-8 sm:p-9 rounded-[28px] bg-[#111114] border border-white/5 shadow-2xl relative flex flex-col items-start text-left justify-between w-full min-h-85 transition-all duration-300 hover:-translate-y-2 hover:border-[#d4af37]/30 group overflow-hidden"
+        {/* STATS STRIP */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-brandLine rounded-3xl border border-brandLine overflow-hidden mb-12 sm:mb-16 shadow-lg"
+        >
+          {stats.map((stat) => (
+            <motion.div
+              key={stat.label}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4, ease: "easeOut" },
+                },
+              }}
+              className="bg-brandBg px-6 py-8 sm:py-10 text-center"
             >
+              <p className="text-2xl sm:text-4xl font-black text-brandPrimary font-mono">
+                <Counter end={stat.value} suffix={stat.suffix} />
+              </p>
+              <p className="text-[10px] uppercase tracking-widest text-brandMuted mt-1.5">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* BOTTOM SECTION: Feature Cards */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12 } },
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-20 w-full"
+        >
+          {featureCards.map((card, idx) => (
+            <motion.article
+              key={idx}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease: "easeOut" },
+                },
+              }}
+              className="p-8 sm:p-9 rounded-[28px] bg-white border border-brandLine shadow-sm relative flex flex-col items-start text-left justify-between w-full min-h-85 transition-all duration-300 hover:-translate-y-2 hover:border-brandPrimary/30 hover:shadow-[0_16px_32px_-12px_rgba(15,23,42,0.12)] group overflow-hidden"
+            >
+              {/* Card Numbering */}
+              <span
+                className="absolute top-6 right-7 font-mono text-[10px] tracking-widest text-brandMuted/40 font-bold"
+                aria-hidden="true"
+              >
+                {`//0${idx + 1}`}
+              </span>
+
               {/* Bottom Accent Border */}
               <div
-                className="absolute bottom-0 left-0 h-1 w-0 bg-[#d4af37] transition-all duration-300 group-hover:w-[45%]"
+                className="absolute bottom-0 left-0 h-1 w-0 bg-brandPrimary transition-all duration-300 group-hover:w-[45%]"
                 aria-hidden="true"
               />
 
               <div className="w-full">
                 {/* Icon Capsule */}
-                <div className="w-12 h-12 rounded-[14px] bg-[#d4af37]/5 border border-[#d4af37]/10 flex items-center justify-center mb-6 shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#d4af37]/15 group-hover:border-[#d4af37]/30 shadow-lg">
+                <div className="w-12 h-12 rounded-[14px] bg-brandPrimary/5 border border-brandPrimary/15 flex items-center justify-center mb-6 shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-brandPrimary/15 group-hover:border-brandPrimary/30 shadow-md">
                   {card.icon}
                 </div>
 
                 {/* Card Title */}
-                <h3 className="text-lg sm:text-xl font-bold text-[#e2e8f0] mb-3 uppercase tracking-wide transition-colors duration-200 group-hover:text-[#d4af37]">
+                <h3 className="text-lg sm:text-xl font-bold text-brandInk mb-3 uppercase tracking-wide transition-colors duration-200 group-hover:text-brandPrimary">
                   {card.title}
                 </h3>
 
                 {/* Card Description */}
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed tracking-wide font-light">
+                <p className="text-brandMuted text-sm sm:text-[15px] leading-relaxed tracking-wide font-light">
                   {card.desc}
                 </p>
               </div>
@@ -224,7 +292,7 @@ export default function About() {
                 <button
                   onClick={() => setSelectedCard(card)}
                   aria-label={`Learn more about ${card.title}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#d4af37]/80 hover:text-[#d4af37] transition-colors duration-300 cursor-pointer bg-transparent border-none p-0 group/btn"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brandPrimary/80 hover:text-brandPrimary transition-colors duration-300 cursor-pointer bg-transparent border-none p-0 group/btn"
                 >
                   Learn More
                   <svg
@@ -242,9 +310,9 @@ export default function About() {
                   </svg>
                 </button>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* POPUP MODAL */}
@@ -253,13 +321,13 @@ export default function About() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-fadeIn"
         >
-          <div className="relative w-full max-w-lg p-6 sm:p-8 bg-[#111114] border border-[#d4af37]/40 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] text-left transition-all">
+          <div className="relative w-full max-w-lg p-6 sm:p-8 bg-white border border-brandPrimary/30 rounded-3xl shadow-[0_16px_40px_rgba(15,23,42,0.15)] text-left transition-all">
             {/* Close Button */}
             <button
               onClick={() => setSelectedCard(null)}
-              className="absolute top-5 right-5 text-white/50 hover:text-[#d4af37] hover:bg-white/10 transition-all text-sm font-bold w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center cursor-pointer"
+              className="absolute top-5 right-5 text-brandMuted hover:text-brandPrimary hover:bg-brandPrimary/10 transition-all text-sm font-bold w-9 h-9 rounded-full bg-brandSoft border border-brandLine flex items-center justify-center cursor-pointer"
               aria-label="Close modal"
             >
               ✕
@@ -267,7 +335,7 @@ export default function About() {
 
             {/* Modal Icon */}
             <div
-              className="w-14 h-14 rounded-2xl bg-[#d4af37]/10 border border-[#d4af37]/30 flex items-center justify-center mb-5 shadow-lg"
+              className="w-14 h-14 rounded-2xl bg-brandPrimary/10 border border-brandPrimary/25 flex items-center justify-center mb-5 shadow-md"
               aria-hidden="true"
             >
               {selectedCard.icon}
@@ -276,28 +344,28 @@ export default function About() {
             {/* Modal Title */}
             <h3
               id="modal-title"
-              className="text-xl sm:text-2xl font-extrabold text-[#e2e8f0] uppercase tracking-wide mb-3"
+              className="text-xl sm:text-2xl font-extrabold text-brandInk uppercase tracking-wide mb-3"
             >
               {selectedCard.title}
             </h3>
 
             {/* Modal Detailed Description */}
-            <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-8 font-light">
+            <p className="text-brandMuted text-sm sm:text-[15px] leading-relaxed mb-6 font-light">
               {selectedCard.details}
             </p>
 
             {/* Action Buttons inside Modal */}
             <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 onClick={() => setSelectedCard(null)}
-                className="flex-1 inline-flex items-center justify-center px-6 py-3.5 bg-[#d4af37] text-[#0a0a0c] text-xs font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-[#d4af37]/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="flex-1 inline-flex items-center justify-center px-6 py-3.5 bg-brandPrimary text-white text-xs font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-brandPrimary/20 hover:bg-brandSecondary hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
                 Hire For This Project
-              </a>
+              </Link>
               <button
                 onClick={() => setSelectedCard(null)}
-                className="px-6 py-3.5 bg-white/5 text-white/80 text-xs font-bold uppercase tracking-widest rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                className="px-6 py-3.5 bg-brandSoft text-brandMuted text-xs font-bold uppercase tracking-widest rounded-xl border border-brandLine hover:bg-brandPrimary/10 transition-all duration-300 cursor-pointer"
               >
                 Close Window
               </button>

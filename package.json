@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.42.2",
     "next": "16.2.11",
+    "nodemailer": "^9.0.5",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
