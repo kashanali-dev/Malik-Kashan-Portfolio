@@ -5,9 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SITE, whatsappLink } from "../lib/site";
 
 const emailjsConfig = {
-  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+  serviceId:
+    process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_w1gazqm",
+  templateId:
+    process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_77bftpf",
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "tCIYv0U2b-QyoNWgq",
 };
 
 const emailjsEnabled =
