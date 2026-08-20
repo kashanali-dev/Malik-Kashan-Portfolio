@@ -2,6 +2,7 @@
 import "./globals.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { SITE, whatsappLink } from "./lib/site";
 import { Poppins } from "next/font/google";
 
@@ -295,6 +296,7 @@ export default function RootLayout({ children }) {
           </span>
         </a>
       </body>
+      <GoogleAnalytics gaId="G-L078Y7W2DR" />
     </html>
   );
 }
